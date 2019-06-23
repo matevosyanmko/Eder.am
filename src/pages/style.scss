@@ -1,0 +1,282 @@
+@import "../layouts/layouts.scss";
+$image: "http://pancaketheorem.com/stuff/demos/borderimage/wood.png";
+
+@mixin background($img) {
+  background: url($img);
+  background-attachment: fixed;
+  background-size: 100%;
+  background-position: center;
+}
+
+// master services
+.containerLayout {
+  margin: 130px auto 0;
+  width: 100%;
+  min-height: 700px;
+  position: relative;
+  overflow: hidden;
+  .bgImage {
+    @include absoluteElement;
+    z-index: 2;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+  .overlay {
+    @include centeredFlex;
+    @include absoluteElement;
+    flex-direction: column;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+
+    h1,
+    h2 {
+      font-weight: 800;
+      padding: 10px;
+    }
+    h1 {
+      font-size: 56px;
+      text-align: center;
+      width: 90%;
+      // border-bottom: 1px solid white;
+    }
+    ul {
+      width: 95%;
+      border: 2px solid white;
+      list-style-type: square;
+      li {
+        margin: 15px;
+        font-size: 28px;
+      }
+    }
+  }
+  .aboutUsHeader {
+    padding: 0 20%;
+    text-align: center;
+    h2 {
+      font-size: 42px;
+    }
+  }
+
+  .overlay.contact {
+    flex-direction: row;
+    justify-content: space-around;
+    .overlayColumn {
+      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3),
+        0 15px 12px rgba(0, 0, 0, 0.22);
+      @include centeredFlex;
+      justify-content: space-between;
+      flex-direction: column;
+      height: 500px;
+      width: 48%;
+      .columntItemRow {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        @include overlayColorBlack;
+        padding: 5px;
+        @include centeredFlex;
+        justify-content: space-between;
+        width: 60%;
+        margin: 10px 0;
+        font-size: 22px;
+        p {
+          margin: 0;
+        }
+        img {
+          height: 50px;
+        }
+      }
+      .columntItem {
+        padding: 10px;
+        margin: 10px 0;
+        @include overlayColorBlack;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        width: 50%;
+        .columnSubHeading {
+          border-bottom: 1px solid white;
+          padding-bottom: 5px;
+          font-weight: 800;
+          font-size: 28px;
+        }
+        p {
+          letter-spacing: 2px;
+          font-size: 22px;
+        }
+      }
+    }
+  }
+}
+.contactUsLayout {
+  margin-top: 90px;
+  height: calc(100vh - 60px);
+}
+.aboutUsBody {
+  padding: 20px;
+  width: 1000px;
+  margin: auto;
+  @include centeredFlex;
+  flex-wrap: wrap;
+  .aboutUsItem {
+    border: #fff solid 8px;
+    width: 230px;
+    height: 200px;
+    object-fit: cover;
+  }
+}
+
+// media queries
+@media screen and (max-width: 1000px) {
+  .aboutUsBody {
+    width: 700px;
+  }
+  .containerLayout {
+    .overlay {
+      min-height: 700px;
+    }
+  }
+  .overlay.contact {
+    .overlayColumn {
+      width: 300px;
+      h2 {
+        font-size: 1.6em;
+      }
+      .columntItem {
+        .columnSubHeading {
+          font-size: 1.5em !important;
+        }
+        p {
+          font-size: 1em !important;
+        }
+      }
+      .columntItemRow {
+        width: 235px !important;
+        p {
+          font-size: 1em;
+        }
+        img {
+          height: 40px !important;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .containerLayout {
+    .overlay {
+      h1 {
+        font-size: 2em;
+      }
+      h2 {
+        font-size: 1.7em;
+      }
+      ul {
+        width: 95%;
+      }
+      ul li {
+        font-size: 1.2em;
+      }
+    }
+  }
+}
+@media screen and (max-width: 800px) {
+  .aboutUs {
+    .aboutUsBody {
+      .aboutUsItem {
+        width: $imageWidthM;
+        height: 150px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  .containerLayout {
+    margin-top: 70px;
+  }
+  .contactUsLayout {
+    margin-top: 100px;
+  }
+  .aboutUsBody {
+    width: 500px;
+    .aboutUsItem {
+      width: 200px;
+    }
+  }
+  .contactUsLayout {
+    height: 1000px;
+  }
+  .overlay.contact {
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
+    .overlayColumn {
+      width: 100% !important;
+      height: 450px !important;
+      h2 {
+        border: 1px solid white;
+        text-align: center;
+        font-size: 1.3em;
+        width: 95% !important;
+      }
+      .columntItem {
+        width: 90% !important;
+        background: none !important;
+      }
+      .columntItemRow {
+        width: 90% !important;
+        margin: 0px !important;
+        background: none !important;
+      }
+    }
+    .overlayColumn:nth-child(2) {
+      justify-content: space-between;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .aboutUs {
+    .aboutUsBody {
+      .aboutUsItem {
+        width: $imageWidthXs;
+      }
+    }
+  }
+  .containerLayout {
+    .overlay {
+      h1 {
+        font-size: 1.8em;
+      }
+      h2 {
+        font-size: 1.2em;
+      }
+
+      ul li {
+        font-size: 1em;
+      }
+    }
+  }
+  .aboutUsBody {
+    width: 500px;
+  }
+  .containerLayout {
+    .overlay {
+      min-height: 700px;
+    }
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .aboutUsBody {
+    width: 95%;
+    padding: 5px;
+    .aboutUsItem {
+      width: 200px;
+      border: #fff solid 2px;
+    }
+  }
+}
